@@ -1399,7 +1399,7 @@ def main(_):
         drop_remainder=True)
 
     hooks = [hvd.BroadcastGlobalVariablesHook(0)]
-    estimator.train(input_fn=train_input_fn, max_steps=num_train_steps)
+    estimator.train(input_fn=train_input_fn, max_steps=num_train_steps, hooks=hooks)
 
   if FLAGS.do_predict:
     if not FLAGS.output_prediction_file:
