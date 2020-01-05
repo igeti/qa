@@ -1320,7 +1320,6 @@ def main(_):
   hvd.init()
   FLAGS.output_dir = FLAGS.output_dir if hvd.rank() == 0 else os.path.join(FLAGS.output_dir, 'trash/' + str(hvd.rank()))
   FLAGS.train_batch_size = FLAGS.train_batch_size * hvd.size()
-  FLAGS.num_warmup_steps = FLAGS.num_warmup_steps
 
   if hvd.rank() == 0:
       tf.logging.set_verbosity(tf.logging.INFO)
