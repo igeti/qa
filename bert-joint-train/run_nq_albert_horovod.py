@@ -26,9 +26,9 @@ import random
 import re
 
 import enum
-from bert_horovod import modeling
-from bert_horovod import optimization
-from bert_horovod import tokenization
+from ALBERT import modeling
+from ALBERT import optimization
+from ALBERT import tokenization
 
 import numpy as np
 import tensorflow as tf
@@ -842,7 +842,7 @@ def read_nq_examples(input_file, is_training):
 def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
                  use_one_hot_embeddings):
     """Creates a classification model."""
-    model = modeling.BertModel(
+    model = modeling.AlbertModel(
         config=bert_config,
         is_training=is_training,
         input_ids=input_ids,
@@ -1335,7 +1335,7 @@ def main(_):
     else:
         FLAGS.save_checkpoints_steps = 1e15  # hack for save checkpoint only on main node
 
-    bert_config = modeling.BertConfig.from_json_file(FLAGS.bert_config_file)
+    bert_config = modeling.AlbertConfig.from_json_file(FLAGS.bert_config_file)
     validate_flags_or_throw(bert_config)
     tf.gfile.MakeDirs(FLAGS.output_dir)
 
